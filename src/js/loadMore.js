@@ -4,5 +4,6 @@ import {fetchImages} from './renderGalleryCard';
 refs.loadMore.addEventListener('click', onLoadMoreClick);
 
 function onLoadMoreClick() {
+
     fetchImages();
 }
