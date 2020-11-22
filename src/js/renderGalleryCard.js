@@ -2,61 +2,50 @@ import refs from './refs';
 import { debounce } from 'lodash';
 import ApiService from './ApiService';
 import  markupGallery from './galleryMarkup';
-import { noticeError } from './infoNotify';
+import { noMatchesFound, noResultsFind } from './infoNotify';
 import './openModal.js';
-
+import { showPreloader, hidePreloader } from './preloader.js';
 
 const API = new ApiService();
+
 refs.searchInput.addEventListener('input', debounce(onSearchInputReguest, 1000));
 
 
-export function onSearchInputReguest(e) {   
-
-    e.preventDefault();
-    clearGalleryContainer();
-    API.query = e.target.value.trim();
+function onSearchInputReguest(e) {   
+  e.preventDefault();
+  clearGalleryContainer();
+  API.query = e.target.value.trim();
     
-    if (API.query === '') {
-        return noResultsFind();
-     } 
-     refs.loadMore.classList.remove('hidden');
-     API.reset();
-     fetchImages();
-  
+  if (API.query === '') {
+    return noResultsFind();
+  } 
+  refs.loadMore.classList.remove('hidden');
+  API.reset();
+  fetchImages();
 }
+
 export function fetchImages() {
-    return API.fetchImage().then(data => {
-        markupGallery(data);
-        scrollPage();
+   return API.fetchImage().then(data => {
+   document.body.classList.remove('loaded');
+   setTimeout(showPreloader, 1000)
+    
+    markupGallery(data);
+    scrollPage();
     
     if (data.length === 0 || data.length < 12 ) {
      refs.loadMore.classList.add('hidden');
       noMatchesFound();
-        }
-    });
-    
-}
-
-function noResultsFind() {
-     refs.loadMore.classList.add('hidden');
-    noticeError(
-        `Please enter search word! `,
-        'error',
-        );
-}
-
-function noMatchesFound() {
-    noticeError(
-        `Sorry. No images has been found!`,
-        'error',
-    );
+     }
+     
+  }).finally(() => {
+    setTimeout(hidePreloader, 2000)
+    });  
 }
 
 function clearGalleryContainer() {
   refs.galleryCardContainer.innerHTML = '';
 }
  
-
 function scrollPage() {
   try {
     setTimeout(() => {
@@ -70,3 +59,4 @@ function scrollPage() {
     console.log(error);
   }
 }
+
