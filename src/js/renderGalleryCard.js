@@ -9,6 +9,7 @@ import { showPreloader, hidePreloader } from './preloader.js';
 const API = new ApiService();
 
 refs.searchInput.addEventListener('input', debounce(onSearchInputReguest, 1000));
+refs.searchInput.addEventListener('submit', (e)=>{e.preventDefault();});
 
 
 function onSearchInputReguest(e) {   

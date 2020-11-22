@@ -4,6 +4,7 @@ import '@pnotify/core/dist/PNotify.css';
 import { defaults } from '@pnotify/core';
 import { defaultModules } from '@pnotify/core';
 import * as PNotifyMobile from '@pnotify/mobile';
+import refs from './refs';
 
 defaultModules.set(PNotifyMobile, {});
 defaults.styling = 'material';

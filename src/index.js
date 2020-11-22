@@ -5,8 +5,3 @@ import './js/openModal.js';
 import './js/loadMore.js';
 import './js/lazyLoad';
 
-
-
-
-
-//  document.body.classList.add('loaded');
