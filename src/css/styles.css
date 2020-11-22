@@ -129,6 +129,10 @@ padding-right: 50px;
 .button-more:hover {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1)) !important;
 }
+button:focus {
+  outline: none;
+
+}
 .form-control:focus {
   color: #495057;
   background-color: #fff;
@@ -224,7 +228,7 @@ padding-right: 50px;
 }
 
 .loaded_hiding .preloader {
-  transition: 0.3s opacity;
+  transition: 2.3s opacity;
   opacity: 0;
 }
 
