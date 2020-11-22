@@ -19,7 +19,7 @@ function onSearchInputReguest(e) {
   if (API.query === '') {
     return noResultsFind();
   } 
-  refs.loadMore.classList.remove('hidden');
+
   API.reset();
   fetchImages();
 }
@@ -27,7 +27,8 @@ function onSearchInputReguest(e) {
 export function fetchImages() {
    return API.fetchImage().then(data => {
    document.body.classList.remove('loaded');
-   setTimeout(showPreloader, 1000)
+    setTimeout(showPreloader, 1000)
+    refs.loadMore.classList.remove('hidden');
     
     markupGallery(data);
     scrollPage();
