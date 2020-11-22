@@ -11,7 +11,9 @@ function openModalImage(e) {
     return;
   }
 
-  const changeModalImage = `<img src=${e.target.dataset.source} alt="" />`;
+  console.log('e.target.dataset.source :>> ', e.target.dataset.src);
+
+  const changeModalImage = `<img src=" ${e.target.dataset.src} " alt="" width="1000" />`;
   const instance = basicLightbox.create(changeModalImage);
 
   instance.show();
