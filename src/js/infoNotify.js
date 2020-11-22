@@ -1,10 +1,10 @@
 import { alert, Stack } from '@pnotify/core';
 import '@pnotify/core/dist/Material.css';
 import '@pnotify/core/dist/PNotify.css';
-
 import { defaults } from '@pnotify/core';
 import { defaultModules } from '@pnotify/core';
 import * as PNotifyMobile from '@pnotify/mobile';
+
 defaultModules.set(PNotifyMobile, {});
 defaults.styling = 'material';
 defaults.icons = 'material';
@@ -13,7 +13,7 @@ defaults.minHeight = '50px';
 
 import 'material-design-icons/iconfont/material-icons.css';
 
-export function noticeError(
+function noticeError(
   text = 'Houston, we have a problem',
   type = 'error',
   delay = 2000,
@@ -39,4 +39,19 @@ export function noticeError(
     delay,
   };
   alert(options);
+}
+
+export function noResultsFind() {
+refs.loadMore.classList.add('hidden');
+noticeError(
+    `Please enter search word! `,
+    'error',
+    );
+}
+
+export function noMatchesFound() {
+noticeError(
+    `Sorry. No images has been found!`,
+    'error',
+);
 }
