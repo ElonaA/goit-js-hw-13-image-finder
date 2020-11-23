@@ -15,7 +15,6 @@ export default class ApiService {
 
     const { hits: images } = await response.json();
     this.increment();
-
     return images;
   }
 

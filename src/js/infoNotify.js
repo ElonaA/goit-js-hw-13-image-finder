@@ -7,8 +7,8 @@ import * as PNotifyMobile from '@pnotify/mobile';
 import refs from './refs';
 
 defaultModules.set(PNotifyMobile, {});
-defaults.styling = 'material';
-defaults.icons = 'material';
+defaults.styling = 'custom';
+
 defaults.width = '370px';
 defaults.minHeight = '50px';
 
@@ -50,9 +50,17 @@ noticeError(
     );
 }
 
-export function noMatchesFound() {
+export function noMoreFound() {
 noticeError(
-    `Sorry. No images has been found!`,
+    `No more images has been found!`,
+    'error',
+);
+}
+
+export function noMatchFound() {
+ document.body.classList.add('loaded');
+noticeError(
+    `Sorry. No matches found!`,
     'error',
 );
 }

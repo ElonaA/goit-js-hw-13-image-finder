@@ -2,7 +2,7 @@ import refs from './refs';
 import { debounce } from 'lodash';
 import ApiService from './ApiService';
 import  markupGallery from './galleryMarkup';
-import { noMatchesFound, noResultsFind } from './infoNotify';
+import { noMatchFound, noResultsFind, noMoreFound } from './infoNotify';
 import './openModal.js';
 import { showPreloader, hidePreloader } from './preloader.js';
 
@@ -34,11 +34,13 @@ export function fetchImages() {
     markupGallery(data);
     scrollPage();
     
-    if (data.length === 0 || data.length < 12 ) {
+    if (data.length === 0) {
      refs.loadMore.classList.add('hidden');
-      noMatchesFound();
+      noMatchFound();
+     } else if (data.length < 12 ) {
+     refs.loadMore.classList.add('hidden');
+      noMoreFound();
      }
-     
   }).finally(() => {
     setTimeout(hidePreloader, 2000)
     });  
